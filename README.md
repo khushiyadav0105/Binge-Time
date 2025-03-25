@@ -1,14 +1,17 @@
 ## Netflix clone with gpt 
    - vite configuration
    - tailwind in vite
+   - Header
+   - login form
+   - 
     
 
 
 ## Features 
 - for logged out user or before logging in
     - sign in/sign up form
-    - background with many movies
-     - once logged in redirect to browse page
+        - background with many movies
+    - once logged in redirect to browse page
 
 
     - for a logged in user
