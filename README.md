@@ -3,7 +3,13 @@
    - tailwind in vite
    - Header
    - login form
-   - 
+   - Routing of app
+   - sign up Form
+   - form validation
+   - useRef hook
+   - Firebase setup
+   - Deploying our app to production
+   - Create SignUp User Account In 
     
 
 
