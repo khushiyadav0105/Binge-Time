@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/Validate";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import {auth } from '../utils/firebase';
 
 const Login = () => {
@@ -40,6 +40,17 @@ const Login = () => {
     }
     else{
       //sign in logic
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        setErrorMessage(errorCode + '-' + errorMessage);
+      });
 
     }
   };
@@ -57,7 +68,7 @@ const Login = () => {
           alt="Netflix Background"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
       </div>
 
       <Header />
@@ -65,7 +76,7 @@ const Login = () => {
       <div className="relative z-10 flex flex-col items-center w-full px-4">
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="bg-black opacity-75 p-8 rounded-lg text-white w-3/12"
+          className="bg-black opacity-80 p-8 rounded-lg text-white w-3/12"
         >
           <h1 className="text-3xl font-bold mb-4">
             {isSignedIn ? "Sign In" : "Sign Up"}
@@ -102,13 +113,15 @@ const Login = () => {
           >
             {isSignedIn ? "Sign In" : "Sign Up"}
           </button>
+          <input type="checkbox" className="  text-blue-600 rounded focus:ring-blue-500" />
+      <span className="">{" "}Remember Me</span>
 
-          <p className="text-gray-400 text-sm mt-4 text-center">
-            {isSignedIn ? "New to Netflix?" : "Already a User?"}
+          <p className="text-gray-400 text-sm mt-6 mb-8">
+            {isSignedIn ? "New to Netflix?" : "Already a User?"}{" "} 
             <button type="button"
               className="text-white hover:underline"
               onClick={toggleSignInForm}>
-              {" "}{isSignedIn ? "Sign up now." : "Sign in now"}
+              {isSignedIn ? "Sign up now." : "Sign in now"}
             </button>
           </p>
         </form>
