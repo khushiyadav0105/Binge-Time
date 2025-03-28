@@ -46,14 +46,13 @@ const Login = () => {
         updateProfile(user, {
           displayName: nameRef.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
         }).then(() => {
-          const { uid,email,displayName,photoURL }=user;
+          const { uid,email,displayName,photoURL }=auth.currentUser;
           dispatch(addUser({
             uid:uid,email:email,
             displayName:displayName,
             photoURL:photoURL,
             })
           )
-          
           navigate("/browse");
         })
         .catch((error) => {
@@ -74,6 +73,14 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        
+        dispatch(
+          addUser({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        }));
         navigate("/browse")
       })
       .catch((error) => {
