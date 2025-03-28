@@ -16,6 +16,9 @@
    - validation
    - created store
    - updated profile Api call
+   - BugFix : Sign up user displayName and profile picture update
+   - BugFix:if user is not logged in Redirect user to login page and vice versa
+   - Fetch from TMDB movies
     
 
 
