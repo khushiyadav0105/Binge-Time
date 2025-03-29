@@ -23,7 +23,7 @@
    - add hardcoded values to constants file
    - Register for TMDB api and get access token
    - Get data from TMDB now playing movies 
-   
+   - Creating our own custom hook
     
 
 
