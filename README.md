@@ -58,3 +58,12 @@
 
 # react.strictmode 
 it results in calling api twice even after using empty dependency array in use effect but it only happens while developing the app when hosted it will not happen 
+
+
+## Browse page planning
+- Main Container
+    - video Background
+    - Video Title
+- Secondary Container
+    - Movielist * n
+    - Cards * n
