@@ -21,6 +21,8 @@
    - Fetch from TMDB movies
    - Unsubscribed to the onAuthStateChanged callback
    - add hardcoded values to constants file
+   - Register for TMDB api and get access token
+   - Get data from TMDB now playing movies 
    
     
 
@@ -51,3 +53,8 @@
 
 
 - we will first build the login page
+
+
+
+# react.strictmode 
+it results in calling api twice even after using empty dependency array in use effect but it only happens while developing the app when hosted it will not happen 
