@@ -26,9 +26,8 @@ const useNowPlayingMovies = () => {
 
   useEffect(() => {
     getNowPlayingMovies();
-  }, [dispatch]);
+  }, []);
 
-  return null; // ✅ This ensures React does not expect a return value
 };
 
 export default useNowPlayingMovies;

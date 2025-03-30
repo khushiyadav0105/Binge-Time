@@ -4,7 +4,7 @@ import playIcon from '../utils/Icons/playIcon.png';
 
 const VideoTitle = ({title,overview}) => {
   return (
-    <div className='pt-50 px-10'>
+    <div className='pt-50 px-10 absolute text-white bg-gradient-to-r from-black w-screen aspect-video pt-[20%] px-[10%]'>
         <h1 className='text-5xl font-bold' >{title}</h1>
         <p className='py-6 font-semibold w-1/4'>{overview}</p>
         <div>
