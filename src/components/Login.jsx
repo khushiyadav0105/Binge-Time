@@ -122,7 +122,7 @@ const Login = () => {
               ref={nameRef}
               type="text"
               placeholder="Full Name"
-              className="w-full p-3 my-2 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-white-600"
+              className="w-full p-3 my-2 border text-white rounded focus:outline-none focus:ring-2 focus:ring-white-600"
             />
           )}
 
