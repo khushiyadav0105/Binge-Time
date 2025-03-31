@@ -1,4 +1,4 @@
-import { IMG_CDN_URL } from "../utils/constants";
+import { IMG_CDN_URL } from "../utils/Constants";
 
 const MovieCard = ({ posterPath }) => {
   if (!posterPath) return null;
