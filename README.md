@@ -31,7 +31,7 @@
    - updated the store with trailer video data
    - embeded the you tube video and make it autoplay and mute
    - added tailwind classes to make main container look awesome
-   - 
+   - GPt Search feature
     
 
 

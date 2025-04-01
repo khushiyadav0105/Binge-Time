@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addUser,removeUser } from '../utils/userSlice';
 import { LOGO } from '../utils/Constants';
+import { toggleSearchView } from '../utils/searchSlice';
 const Header = () => {
   const navigate = useNavigate(); 
 
@@ -46,15 +47,23 @@ const Header = () => {
       });
       return ()=>unsubscribe();
 
-},[])
+      },[]);
+
+      const handelSearchClick=()=>{
+        // toggle Search
+        dispatch(toggleSearchView());
+      }
+
+
 
   return (
-    <div className="absolute top-0 left-0 w-full px-8 py-4 bg-gradient-to-b from-black z-10 flex flex-row items-center justify-between">
+    <div className="absolute top-0 left-0 w-full px-8 py-4 z-10 flex flex-row items-center justify-between bg-transparent">
       <img className="w-44"
         src={LOGO}
         alt="Netflix Logo"
       />
       {user && <div className="flex items-center gap-4">
+        <button className='py-2 px-4 m-2 bg-purple-600 text-white rounded-lg mx-4 my-2' onClick={handelSearchClick}>Search</button>
         <img
           className="w-12 h-12"
           alt="user-icon"
