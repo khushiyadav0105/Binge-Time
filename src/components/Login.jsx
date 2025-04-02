@@ -7,6 +7,7 @@ import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { USER_AVATAR } from "../utils/Constants";
+import { NETFLIX_BG } from "../utils/Constants";
 
 
 
@@ -99,7 +100,7 @@ const Login = () => {
     <div className="relative h-screen w-full flex items-center justify-center">
       <div className="absolute inset-0 ">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web/IN-en-20250317-TRIFECTA-perspective_26f87873-6014-460d-a6fb-1d96d85ffe5f_large.jpg"
+          src={NETFLIX_BG}
           alt="Netflix Background"
           className="w-full h-full object-cover"
         />

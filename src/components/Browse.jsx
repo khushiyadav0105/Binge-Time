@@ -9,6 +9,8 @@ import Search from './Search';
 import SecondaryContainer from './SecondaryContainer';
 const Browse = () => {
   const showSearch=useSelector(store => store.search.showSearch);
+  console.log(showSearch); // Check if it's true when you expect it to be
+
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();
@@ -17,15 +19,7 @@ const Browse = () => {
   return (
     <div>
       <Header/>
-      {
-        showSearch ? 
-        <Search/>:
-        <>
-        <MainContainer/>
-        <SecondaryContainer/>
-        </>
-      }
-      
+      {showSearch  ? <Search/>: <MainContainer/>}
 
     </div>
   )

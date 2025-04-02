@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addUser,removeUser } from '../utils/userSlice';
-import { LOGO } from '../utils/Constants';
+import { LOGO, SUPPORTED_LANGUAGES } from '../utils/Constants';
 import { toggleSearchView } from '../utils/searchSlice';
 const Header = () => {
+
   const navigate = useNavigate(); 
 
   const user=useSelector((store)=>store.user);
@@ -50,7 +51,7 @@ const Header = () => {
       },[]);
 
       const handelSearchClick=()=>{
-        // toggle Search
+        // Toggle Search ......
         dispatch(toggleSearchView());
       }
 
@@ -62,7 +63,16 @@ const Header = () => {
         src={LOGO}
         alt="Netflix Logo"
       />
-      {user && <div className="flex items-center gap-4">
+      {user && 
+      <div className="flex items-center gap-4">
+        <select className='p-2 m-2 bg-gray-800 text-white'>
+          {SUPPORTED_LANGUAGES.map(lang=> <option 
+            key={lang.identifier}
+            value={lang.identifier}>
+            {lang.name}
+          </option>)}
+         
+        </select>
         <button className='py-2 px-4 m-2 bg-purple-600 text-white rounded-lg mx-4 my-2' onClick={handelSearchClick}>Search</button>
         <img
           className="w-12 h-12"
@@ -72,6 +82,7 @@ const Header = () => {
         <button onClick={handleSignOut} className="font-bold text-white">
           Sign Out
         </button>
+        
       </div>}
     </div>
   );
