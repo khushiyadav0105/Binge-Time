@@ -4,6 +4,7 @@ import GptMovieSuggestions from './GptMovieSuggestions';
 import { NETFLIX_BG } from '../utils/Constants';
 
 const Search = () => {
+  
   return (
     <div>
       <div className="absolute inset-0 -z-10">

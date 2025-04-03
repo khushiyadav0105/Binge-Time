@@ -21,4 +21,5 @@ export const NETFLIX_BG ="https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-69
 
 
 export const SUPPORTED_LANGUAGES=[{identifier:"en",name:"English"},{identifier:"hindi",name:"Hindi"},
-  {identifier:"spanish",name:"Spanish"}]
+{identifier:"spanish",name:"Spanish"}
+]

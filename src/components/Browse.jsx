@@ -19,7 +19,14 @@ const Browse = () => {
   return (
     <div>
       <Header/>
-      {showSearch  ? <Search/>: <MainContainer/>}
+      {showSearch  ? 
+      <Search/>: 
+      <>
+      <MainContainer/>
+      <SecondaryContainer/>
+      </>
+      }
+      
 
     </div>
   )

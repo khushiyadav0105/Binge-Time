@@ -8,6 +8,10 @@ import { useDispatch } from 'react-redux';
 import { addUser,removeUser } from '../utils/userSlice';
 import { LOGO, SUPPORTED_LANGUAGES } from '../utils/Constants';
 import { toggleSearchView } from '../utils/searchSlice';
+import {changeLanguage} from '../utils/configSlice';
+import useLanguage from '../hooks/useLanguage';
+import lang from '../utils/LanguageConstants';
+
 const Header = () => {
 
   const navigate = useNavigate(); 
@@ -25,6 +29,8 @@ const Header = () => {
   };
 
   const dispatch = useDispatch();
+
+  const langKey=useLanguage();
 
   useEffect(() =>  {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -55,6 +61,12 @@ const Header = () => {
         dispatch(toggleSearchView());
       }
 
+    const handelLanguageChange = (e) => {
+      
+      dispatch(changeLanguage(e.target.value));
+      
+    }
+
 
 
   return (
@@ -65,7 +77,7 @@ const Header = () => {
       />
       {user && 
       <div className="flex items-center gap-4">
-        <select className='p-2 m-2 bg-gray-800 text-white'>
+        <select className='p-2 m-2 bg-gray-800 text-white' onChange={handelLanguageChange}>
           {SUPPORTED_LANGUAGES.map(lang=> <option 
             key={lang.identifier}
             value={lang.identifier}>
@@ -73,14 +85,17 @@ const Header = () => {
           </option>)}
          
         </select>
-        <button className='py-2 px-4 m-2 bg-purple-600 text-white rounded-lg mx-4 my-2' onClick={handelSearchClick}>Search</button>
+        <button className='py-2 px-4 m-2 bg-purple-600 text-white rounded-lg mx-4 my-2' onClick={handelSearchClick}
+        > 
+          {lang[langKey].search} 
+        </button>
         <img
           className="w-12 h-12"
           alt="user-icon"
           src={user.photoURL}
         />
         <button onClick={handleSignOut} className="font-bold text-white">
-          Sign Out
+        {lang[langKey].SignOut}
         </button>
         
       </div>}
