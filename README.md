@@ -39,7 +39,9 @@
    - usePopularMovies Custom Hooks
    - GPT search page
    - GPT Search Bar
-   - (BONUS) Multi-Language Feature in our App
+   - **(BONUS) Multi-Language Feature in our App
+   - Integrate GPT API's
+   
 
     
 

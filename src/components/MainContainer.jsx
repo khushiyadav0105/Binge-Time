@@ -8,7 +8,7 @@ const MainContainer = () => {
   
   if (!movies || movies.length === 0) return <h1>Loading...</h1>;
 
-  const mainMovie = movies?.[2] || {};
+  const mainMovie = movies?.[0] || {};
 
 
   const {original_title,overview,id} = mainMovie;
