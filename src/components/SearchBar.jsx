@@ -20,7 +20,7 @@ const SearchBar = ({onSearch}) => {
 
   return (
     <div className='flex justify-center items-center pt-[10%]'> 
-      <form className='bg-black w-[50%] flex items-center p-4 rounded-lg ' onSubmit={(e)=>e.preventDefault()}>
+      <form className='bg-black w-[50%] flex items-center p-4 rounded-lg relative ' onSubmit={(e)=>e.preventDefault()}>
         <input 
           type="text" 
           className='p-3 w-[70%] rounded-lg bg-gray-300' 
