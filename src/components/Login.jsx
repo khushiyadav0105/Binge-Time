@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { USER_AVATAR } from "../utils/Constants";
 import { NETFLIX_BG } from "../utils/Constants";
+import useLanguage from "../hooks/useLanguage";
+import lang from "../utils/LanguageConstants";
 
 
 
@@ -15,7 +17,10 @@ import { NETFLIX_BG } from "../utils/Constants";
 const Login = () => {
 
   const [isSignedIn, setIsSignedIn] = useState(true);
+
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const langKey=useLanguage();
   
 
   const dispatch = useDispatch();
@@ -27,7 +32,7 @@ const Login = () => {
   const handleButtonClick = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    const name = isSignedIn ? null : nameRef.current?.value; // Name is required only in Sign Up
+    const name = isSignedIn ? null : nameRef.current?.value;
 
     console.log("Checking: ", email, password, name);
 
@@ -115,14 +120,14 @@ const Login = () => {
           className="bg-black opacity-80 p-8 rounded-lg text-white w-3/12"
         >
           <h1 className="text-3xl font-bold mb-6 mt-6 ">
-            {isSignedIn ? "Sign In" : "Sign Up"}
+            {isSignedIn ? lang[langKey].signIn : lang[langKey].signUp}
           </h1>
 
           {!isSignedIn && (
             <input
               ref={nameRef}
               type="text"
-              placeholder="Full Name"
+              placeholder={lang[langKey].fullName}
               className="w-full p-3 my-2 border text-white rounded focus:outline-none focus:ring-2 focus:ring-white-600"
             />
           )}
@@ -130,14 +135,14 @@ const Login = () => {
           <input
             ref={emailRef}
             type="email"
-            placeholder="Email or mobile number"
+            placeholder={lang[langKey].emailOrPhone}
             className="w-full p-3 my-2 text-white rounded border border-white focus:outline-none focus:ring-2 focus:ring-white-600 "
           />
 
           <input
             ref={passwordRef}
             type="password"
-            placeholder="Password"
+            placeholder={lang[langKey].password}
             className="w-full p-3 my-2 mb-4 text-white rounded border border-white focus:outline-none focus:ring-2 focus:ring-white-600"
           />
           {errorMessage && <p className="text-red-700">{errorMessage}</p>}
@@ -147,19 +152,22 @@ const Login = () => {
             className="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded my-4 font-bold cursor-pointer"
             onClick={handleButtonClick}
           >
-            {isSignedIn ? "Sign In" : "Sign Up"}
+            {isSignedIn ? lang[langKey].signIn : lang[langKey].signUp}
           </button>
           <input type="checkbox" className="  text-blue-600 rounded focus:ring-blue-500" />
-      <span className="">{" "}Remember Me</span>
+      <span className="">{" "}{lang[langKey].rememberMe}</span>
 
-          <p className="text-gray-400 text-sm mt-6 mb-8">
-            {isSignedIn ? "New to Netflix?" : "Already a User?"}{" "} 
-            <button type="button"
-              className="text-white hover:underline"
-              onClick={toggleSignInForm}>
-              {isSignedIn ? "Sign up now." : "Sign in now"}
-            </button>
-          </p>
+      <p className="text-gray-400 text-sm mt-6 mb-8">
+        {isSignedIn ? lang[langKey].newToNetflix : lang[langKey].alreadyUser}{" "}
+        <button
+          type="button"
+          className="text-white hover:underline"
+          onClick={toggleSignInForm}
+        >
+          {isSignedIn ? lang[langKey].signUpNow : lang[langKey].signInNow}
+        </button>
+      </p>
+
         </form>
       </div>
     </div>

@@ -11,12 +11,17 @@ import { toggleSearchView } from '../utils/searchSlice';
 import {changeLanguage} from '../utils/configSlice';
 import useLanguage from '../hooks/useLanguage';
 import lang from '../utils/LanguageConstants';
+import { Search, Home, ChevronDown } from "lucide-react";
+
+
 
 const Header = () => {
 
   const navigate = useNavigate(); 
 
   const user=useSelector((store)=>store.user);
+
+  const showSearch = useSelector((store) => store.search.showSearch);
 
   const handleSignOut = () => {  
     signOut(auth)
@@ -56,12 +61,12 @@ const Header = () => {
 
       },[]);
 
-      const handelSearchClick=()=>{
+      const handleSearchClick=()=>{
         // Toggle Search ......
         dispatch(toggleSearchView());
       }
 
-    const handelLanguageChange = (e) => {
+    const handleLanguageChange = (e) => {
       
       dispatch(changeLanguage(e.target.value));
       
@@ -69,38 +74,54 @@ const Header = () => {
 
 
 
-  return (
-    <div className="absolute top-0 left-0 w-full px-8 py-4 z-10 flex flex-row items-center justify-between bg-transparent">
-      <img className="w-44"
-        src={LOGO}
-        alt="Netflix Logo"
-      />
-      {user && 
-      <div className="flex items-center gap-4">
-        <select className='p-2 m-2 bg-gray-800 text-white' onChange={handelLanguageChange}>
-          {SUPPORTED_LANGUAGES.map(lang=> <option 
-            key={lang.identifier}
-            value={lang.identifier}>
-            {lang.name}
-          </option>)}
-         
-        </select>
-        <button className='py-2 px-4 m-2 bg-purple-600 text-white rounded-lg mx-4 my-2' onClick={handelSearchClick}
-        > 
-          {lang[langKey].search} 
-        </button>
-        <img
-          className="w-12 h-12"
-          alt="user-icon"
-          src={user.photoURL}
-        />
-        <button onClick={handleSignOut} className="font-bold text-white">
-        {lang[langKey].SignOut}
-        </button>
-        
-      </div>}
-    </div>
-  );
-};
+    return (
+      <div className="absolute top-0 left-0 w-full px-6 py-3 z-10 flex items-center justify-between bg-gradient-to-b from-black via-black/80 to-transparent">
+        <img className="w-40" src={LOGO} alt="Netflix Logo" />
+    
+        <div className="flex items-center gap-4">
+          {/* Language Selector */}
+          <select
+            className="bg-black/70 text-white text-sm px-3 py-1 rounded-md border border-gray-500 hover:bg-black/90 transition"
+            onChange={handleLanguageChange}
+          >
+            {SUPPORTED_LANGUAGES.map((lang) => (
+              <option className="bg-white text-black" key={lang.identifier} value={lang.identifier}>
+                {lang.name}
+              </option>
+            ))}
+          </select>
+    
+          {/* Search / Home Toggle */}
+          {user && (
+            <>
+              <button
+                className="p-2 bg-red-600 hover:bg-red-700 text-white rounded-full transition duration-200"
+                onClick={handleSearchClick}
+              >
+                {showSearch ? <Home size={20} /> : <Search size={20} />}
+              </button>
+    
+              {/* User Avatar and SignOut */}
+              <div className="flex items-center gap-2">
+                <img
+                  className="w-9 h-9 rounded-full border border-white"
+                  alt="user-icon"
+                  src={user.photoURL}
+                />
+                <button
+                  onClick={handleSignOut}
+                  className="bg-white/10 border border-white/30 text-white text-sm px-4 py-1.5 rounded-md hover:bg-white/20 transition"
+                >
+                  {lang[langKey].SignOut}
+                </button>
+
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    );
+    
+  };    
 
 export default Header;

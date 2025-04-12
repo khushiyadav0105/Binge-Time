@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
-import GptMovieSuggestions from "./GptMovieSuggestions";
+
 import { NETFLIX_BG, API_OPTIONS } from "../utils/Constants";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]); // Fix: Use an array instead of a string
+  const [searchResults, setSearchResults] = useState([]);
+  
 
   const fetchMovies = async (query) => {
     if (!query) return;
 
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}`, // Fix: Encode query
+        `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}`,
         API_OPTIONS
       );
 
@@ -38,8 +39,6 @@ const Search = () => {
       {searchQuery && (
         <p className="text-white text-center mt-4">Searching for: {searchQuery}</p>
       )}
-
-      <GptMovieSuggestions />
 
 
       {searchResults.length > 0 ? (
